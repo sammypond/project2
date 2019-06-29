@@ -2,6 +2,8 @@ const express = require('express');
 const db = require('../models');
 const passport = require('../config/passportConfig');
 const router = express.Router();
+var axios = require('axios');
+
 
 // GET /auth/signup - sends the signup form
 router.get('/signup', function (req, res) {
