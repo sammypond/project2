@@ -26,6 +26,11 @@ const sessionStore = new SequelizeStore({
   expiration: 1000 * 60 * 30
 });
 
+const headers = {
+  'x-api-key': 'c8b3CWnMmXyVDWGlx-tMcHtEUl_-ZktIzl4Q',
+  'Accept': 'application/json'
+}
+
 app.set('view engine', 'ejs');
 //all middleware are 'app-use'
 app.use(require('morgan')('dev'));
@@ -67,9 +72,15 @@ app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
+
+
 app.get('/show', isLoggedIn, function(req, res) {
-  
-res.render('show');
+  axios.get('https://api.setlist.fm/rest/1.0/artist/199596a3-a1af-49f8-8795-259eff8461fb/setlists?p=3', {headers})
+  .then (function(apiResponse){
+    var songs = apiResponse.data.setlist;
+    res.render('show', {songs: songs});
+    console.log(songs);
+  })
 });
 
 app.use('/auth', require('./controllers/auth'));
