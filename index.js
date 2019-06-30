@@ -77,9 +77,16 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.get('/show', isLoggedIn, function(req, res) {
   axios.get('https://api.setlist.fm/rest/1.0/artist/199596a3-a1af-49f8-8795-259eff8461fb/setlists?p=3', {headers})
   .then (function(apiResponse){
-    var songs = apiResponse.data.setlist;
+    var songs = apiResponse.data.setlist[0].sets.set[0];
+    var songsTwo = apiResponse.data.setlist[0].sets.set[1];
     res.render('show', {songs: songs});
-    console.log(songs);
+    // console.log(songs);
+    // console.log(songsTwo);
+    var setOne = songs.song;
+    var setTwo = songsTwo.song;
+
+    console.log(setOne);
+    console.log(setTwo);
   })
 });
 
