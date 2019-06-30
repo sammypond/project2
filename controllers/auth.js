@@ -55,9 +55,10 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.get('/set', function(req, res){
-  res.render('/show');
-})
+// router.get('/show', function(req, res){
+  
+//   res.render('/show');
+// })
 
 
 module.exports = router;

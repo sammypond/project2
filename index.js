@@ -9,6 +9,8 @@ const passport = require('./config/passportConfig');
 const flash = require('connect-flash');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const helmet = require('helmet');
+var axios = require('axios');
+
 
 // this is only used by the session store 
 const db = require('./models');
@@ -67,7 +69,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 
 app.get('/show', isLoggedIn, function(req, res) {
   
-  res.render('show');
+res.render('show');
 });
 
 app.use('/auth', require('./controllers/auth'));
