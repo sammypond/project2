@@ -9,7 +9,9 @@
 <body>
     <h1> Hello, <%= currentUser.name %> below you can see setlist information: </h1>
 
-       
+       <% setOne.forEach(function(song){ %>
+       <h1> <%= song.name %></h1>
+      <% }); %>
 
 </body>
 </html>

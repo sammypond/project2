@@ -79,11 +79,11 @@ app.get('/show', isLoggedIn, function(req, res) {
   .then (function(apiResponse){
     var songs = apiResponse.data.setlist[0].sets.set[0];
     var songsTwo = apiResponse.data.setlist[0].sets.set[1];
-    res.render('show', {songs: songs});
     // console.log(songs);
     // console.log(songsTwo);
     var setOne = songs.song;
     var setTwo = songsTwo.song;
+    res.render('show', {setOne: setOne}, {setTwo: setTwo});
 
     console.log(setOne);
     console.log(setTwo);
