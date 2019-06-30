@@ -83,7 +83,7 @@ app.get('/show', isLoggedIn, function(req, res) {
     // console.log(songsTwo);
     var setOne = songs.song;
     var setTwo = songsTwo.song;
-    res.render('show', {setOne: setOne}, {setTwo: setTwo});
+    res.render('show', {setOne: setOne, setTwo: setTwo});
 
     console.log(setOne);
     console.log(setTwo);

@@ -7,9 +7,14 @@
     <title>Set</title>
 </head>
 <body>
+<a href="/">Home</a>
+
     <h1> Hello, <%= currentUser.name %> below you can see setlist information: </h1>
 
        <% setOne.forEach(function(song){ %>
+       <h1> <%= song.name %></h1>
+      <% }); %>
+       <% setTwo.forEach(function(song){ %>
        <h1> <%= song.name %></h1>
       <% }); %>
 
