@@ -38,6 +38,7 @@ app.set('view engine', 'ejs');
 //all middleware are 'app-use'
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 app.use(ejsLayouts);
 app.use(helmet());
@@ -113,12 +114,14 @@ app.get('/show2', isLoggedIn, function(req, res) {
   })
 });
 
-app.post('/show2', function(req, res){
+app.post('/show2', function (req, res) {
+  
+  db.set.create(req.body).then(function () {
+    res.redirect('show2'); //redirects to a score page 
 
-  db.set.create(req.body).then(function(){
-  res.redirect('show2')
   })
-})
+});
+
 
 app.use('/auth', require('./controllers/auth'));
 

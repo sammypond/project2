@@ -20,10 +20,7 @@
        <% }) %> %>
        <ol>
        <% fullSetTwo.forEach(function(song){ %>
-       <form method="POST" action="/show2">
-       <li class="songs"><%= song.name %></li>
-        <button class="btn btn-primary" type="submit">Add to Picks</button>
-       </form>
+            <button><li class="songs"><%= song.name %></li></button>
       <% }); %>
       </ol>
     

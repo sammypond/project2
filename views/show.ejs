@@ -20,15 +20,20 @@
        <% fullSet.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
-       <ol>
-       <% fullSet.forEach(function(song){ %>
-        <form method="POST" action="/show2">
-            <li class="songs"><%= song.name %></li>
-        <button class="btn btn-primary" type="submit">Add to Picks</button>
-       </form>
-      <% }); %>
-      </ol>
-      
+       <div id="set-container">
+        <div id="randomset">
+        <ol>
+        <% fullSet.forEach(function(song){ %>
+                <button><li class="songs"><%= song.name %></li></button>
+        <% }); %>
+        </ol>
+        </div>
+        <div>
+        <ol id="picks">
+        </ol>
+        </div>
+    </div>
+<script src="/js/script.js"></script>
 </body>
 </html>
 

@@ -4,7 +4,7 @@ body{
 #banner {
     text-align: center;
 }
-.songs {
+#songs {
     justify-content: left;
 }
 
@@ -19,4 +19,17 @@ button {
 
 .opener {
     margin-left: 18rem;
+}
+
+button:hover {
+    background-color: pink;
+    color: white;
+}
+
+#randomset {
+    float: left;
+}
+
+#picks {
+    float: right;
 }
