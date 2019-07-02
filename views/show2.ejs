@@ -14,19 +14,15 @@
     <h3><%= tribeVenue.venue.city.name %>,<%=tribeVenue.venue.city.state%> on <%=tribeVenue.eventDate%>:</h3>
 </div>
     <hr />
-        <% tribeSetOne.sort(function(){ %>
+       
+       <% fullSetTwo.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
-       <% tribeSetTwo.sort(function(){ %>
-          <%  return 0.5 - Math.random() %>
-       <% }) %> %>
-       <% tribeSetOne.forEach(function(song){ %>
-       
-       <button><h3 class="songs"><%= song.name %></h3></button>
-       
+       <ol>
+       <% fullSetTwo.forEach(function(song){ %>
+       <button><li class="songs"><%= song.name %></li></button>
       <% }); %>
-       <% tribeSetTwo.forEach(function(song){ %>
-       <button><h3 class="songs"> <%= song.name %></h3></button>
-      <% }); %>
+      </ol>
+     
 </body>
 </html>

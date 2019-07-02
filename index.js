@@ -87,8 +87,9 @@ app.get('/show', isLoggedIn, function(req, res) {
     // console.log(songsTwo);
     var setOne = songs.song;
     var setTwo = songsTwo.song;
+    var fullSet = setOne.concat(setTwo);
    
-    res.render('show', {setOne: setOne, setTwo: setTwo, venue: venue});
+    res.render('show', {fullSet: fullSet, venue: venue});
 
     
   })
@@ -104,8 +105,9 @@ app.get('/show2', isLoggedIn, function(req, res) {
     
     var tribeSetOne = tribeSongs.song;
     var tribeSetTwo = tribeSongsTwo.song;
+    var fullSetTwo = tribeSetOne.concat(tribeSetTwo);
    
-    res.render('show2', {tribeSetOne: tribeSetOne, tribeSetTwo: tribeSetTwo, tribeVenue: tribeVenue});
+    res.render('show2', {fullSetTwo:fullSetTwo, tribeVenue: tribeVenue});
 
     console.log(apiResponse);
     

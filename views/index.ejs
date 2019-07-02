@@ -1,13 +1,16 @@
 <h2>Home</h2>
 
 <% if (!currentUser) { %>
-<a href="/auth/signup">Signup</a>
-<a href="/auth/login">Login</a>
+<div>
+<a class="opener" href="/auth/signup">Signup</a>
+<a class="opener" href="/auth/login">Login</a>
+</div>
 <% } else { %>
     <p>Hello, <%= currentUser.name %> </p>
-<a href="/auth/logout">Logout</a>
-<a href="/profile">Profile</a>
-<a href="/show">Greensky Set</a>
-<a href="/show2">STS9 Set</a>
-
+<div>
+<a class="opener" href="/auth/logout">Logout</a>
+<a class="opener" href="/profile">Profile</a>
+<a class="opener" href="/show">Greensky Set</a>
+<a class="opener" href="/show2">STS9 Set</a>
+</div>
 <% } %>

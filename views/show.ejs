@@ -16,20 +16,16 @@
     <h3><%= venue.venue.city.name %>,<%=venue.venue.city.state%> on <%=venue.eventDate%>:</h3>
 </div>
     <hr />
-        <% setOne.sort(function(){ %>
+        
+       <% fullSet.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
-       <% setTwo.sort(function(){ %>
-          <%  return 0.5 - Math.random() %>
-       <% }) %> %>
-       <% setOne.forEach(function(song){ %>
-       
-       <button><h3 class="songs"><%= song.name %></h3></button>
-       
+       <ol>
+       <% fullSet.forEach(function(song){ %>
+            <button><li class="songs"><%= song.name %></li></button>
       <% }); %>
-       <% setTwo.forEach(function(song){ %>
-       <button><h3 class="songs"> <%= song.name %></h3></button>
-      <% }); %>
+      </ol>
+      
 </body>
 </html>
 
