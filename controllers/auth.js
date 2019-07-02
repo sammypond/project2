@@ -55,10 +55,8 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-// router.get('/show', function(req, res){
-  
-//   res.render('/show');
-// })
+//POST post user picks
+
 
 
 module.exports = router;

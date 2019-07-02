@@ -109,10 +109,16 @@ app.get('/show2', isLoggedIn, function(req, res) {
    
     res.render('show2', {fullSetTwo:fullSetTwo, tribeVenue: tribeVenue});
 
-    console.log(apiResponse);
     
   })
 });
+
+app.post('/show2', function(req, res){
+
+  db.set.create(req.body).then(function(){
+  res.redirect('show2')
+  })
+})
 
 app.use('/auth', require('./controllers/auth'));
 
