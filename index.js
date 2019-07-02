@@ -31,6 +31,9 @@ const headers = {
   'Accept': 'application/json'
 }
 
+var setOne;
+var setTwo;
+
 app.set('view engine', 'ejs');
 //all middleware are 'app-use'
 app.use(require('morgan')('dev'));
@@ -79,14 +82,15 @@ app.get('/show', isLoggedIn, function(req, res) {
   .then (function(apiResponse){
     var songs = apiResponse.data.setlist[0].sets.set[0];
     var songsTwo = apiResponse.data.setlist[0].sets.set[1];
+    var venue = apiResponse.data.setlist[0];
     // console.log(songs);
     // console.log(songsTwo);
     var setOne = songs.song;
     var setTwo = songsTwo.song;
-    res.render('show', {setOne: setOne, setTwo: setTwo});
+   
+    res.render('show', {setOne: setOne, setTwo: setTwo, venue: venue});
 
     console.log(setOne);
-    console.log(setTwo);
   })
 });
 

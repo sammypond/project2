@@ -1,0 +1,18 @@
+body{
+    background-color: pink;    
+}
+#banner {
+    text-align: center;
+}
+.songs {
+    justify-content: left;
+}
+
+a {
+    margin-left: 0 0 0 0;
+}
+
+button {
+    display: block;
+
+}

@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Set</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<a href="/">Home</a>
-
-    <h1> Hello, <%= currentUser.name %> below you can see setlist information: </h1>
+<h1><a href="/">Home</a></h1>
+<div id="banner">
+    <h1> Hello, <%= currentUser.name %>, below you can see setlist information for: </h1>
+    <h3><%= venue.artist.name %> playing at</h3>
+    <h2><%= venue.venue.name %> in</h2>
+    <h3><%= venue.venue.city.name %>,<%=venue.venue.city.state%> on <%=venue.eventDate%>:</h3>
+</div>
+    <hr />
 
        <% setOne.forEach(function(song){ %>
-       <h1> <%= song.name %></h1>
+       <button><h3 class="songs"><%= song.name %></h3></button>
       <% }); %>
        <% setTwo.forEach(function(song){ %>
-       <h1> <%= song.name %></h1>
+       <button><h3 class="songs"> <%= song.name %></h3></button>
       <% }); %>
-
+<script src="/js/script.js"></script>
 </body>
 </html>
 
