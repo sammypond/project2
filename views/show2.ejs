@@ -1,35 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Greensky</title>
+    <title>STS9</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <h1><a href="/">Home</a></h1>
 <div id="banner">
     <h1> Hello, <%= currentUser.name %>, below you can see setlist information for: </h1>
-    <h3><%= venue.artist.name %> playing at</h3>
-    <h2><%= venue.venue.name %> in</h2>
-    <h3><%= venue.venue.city.name %>,<%=venue.venue.city.state%> on <%=venue.eventDate%>:</h3>
+    <h3><%= tribeVenue.artist.name %> playing at</h3>
+    <h2><%= tribeVenue.venue.name %> in</h2>
+    <h3><%= tribeVenue.venue.city.name %>,<%=tribeVenue.venue.city.state%> on <%=tribeVenue.eventDate%>:</h3>
 </div>
     <hr />
-        <% setOne.sort(function(){ %>
+        <% tribeSetOne.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
-       <% setTwo.sort(function(){ %>
+       <% tribeSetTwo.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
-       <% setOne.forEach(function(song){ %>
+       <% tribeSetOne.forEach(function(song){ %>
        
        <button><h3 class="songs"><%= song.name %></h3></button>
        
       <% }); %>
-       <% setTwo.forEach(function(song){ %>
+       <% tribeSetTwo.forEach(function(song){ %>
        <button><h3 class="songs"> <%= song.name %></h3></button>
       <% }); %>
 </body>
 </html>
-

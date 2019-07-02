@@ -76,7 +76,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 });
 
 
-
+// GET greensky set
 app.get('/show', isLoggedIn, function(req, res) {
   axios.get('https://api.setlist.fm/rest/1.0/artist/199596a3-a1af-49f8-8795-259eff8461fb/setlists?p=3', {headers})
   .then (function(apiResponse){
@@ -90,7 +90,25 @@ app.get('/show', isLoggedIn, function(req, res) {
    
     res.render('show', {setOne: setOne, setTwo: setTwo, venue: venue});
 
-    console.log(setOne);
+    
+  })
+});
+
+// GET sts9 set
+app.get('/show2', isLoggedIn, function(req, res) {
+  axios.get('https://api.setlist.fm/rest/1.0/artist/8d07ac81-0b49-4ec3-9402-2b8b479649a2/setlists?p=3', {headers})
+  .then (function(apiResponse){
+    var tribeSongs = apiResponse.data.setlist[0].sets.set[0];
+    var tribeSongsTwo = apiResponse.data.setlist[0].sets.set[1];
+    var tribeVenue = apiResponse.data.setlist[0];
+    
+    var tribeSetOne = tribeSongs.song;
+    var tribeSetTwo = tribeSongsTwo.song;
+   
+    res.render('show2', {tribeSetOne: tribeSetOne, tribeSetTwo: tribeSetTwo, tribeVenue: tribeVenue});
+
+    console.log(apiResponse);
+    
   })
 });
 
