@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Greensky</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+
 <h1><a href="/">Home</a></h1>
-<div id="banner">
-    <h1> Hello, <%= currentUser.name %>, below you can see setlist information for: </h1>
-    <h3><%= venue.artist.name %> playing at</h3>
-    <h2><%= venue.venue.name %> in</h2>
-    <h3><%= venue.venue.city.name %>,<%=venue.venue.city.state%> on <%=venue.eventDate%>:</h3>
-</div>
-    <hr />
+
         
-       <% fullSet.sort(function(){ %>
-          <%  return 0.5 - Math.random() %>
-       <% }) %> %>
+      
        <div id="set-container">
         <div id="randomset">
         <ol>
-        <% fullSet.forEach(function(song){ %>
-                <button><li class="songs"><%= song.name %></li></button>
+        <% setlists.forEach(function(setList){ %>
+                <button><li class="songs"><a href="/sets/<%= setList.id %>">ID: <%= setList.id %>, <%= setList.eventDate %> <%= setList.venue.name %></a></li></button>
         <% }); %>
         </ol>
         </div>
@@ -33,7 +16,5 @@
         </ol>
         </div>
     </div>
-<script src="/js/script.js"></script>
-</body>
-</html>
+
 

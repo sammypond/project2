@@ -1,20 +1,42 @@
-<h2>Home</h2>
 
-<% if (!currentUser) { %>
-<nav>
-<div>
-<a class="opener" href="/auth/signup">Signup</a>
-<a class="opener" href="/auth/login">Login</a>
-</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Phantasy Picks</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+    <% if (!currentUser) { %>
+      <li class="nav-item active">
+        <a class="nav-link opener" href="/auth/signup">Signup<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/login">Login</a>
+      </li>
+    <% } else { %>
+
+    <li class="nav-item"> </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/auth/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/bands/greensky">Greensky</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/bands/tribe">STS9</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/bands/cheese">SCI</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/bands/railroad">Railroad</a>
+      </li>
+    <% } %>
+    </ul>
+  </div>
 </nav>
-<% } else { %>
-    <p>Hello, <%= currentUser.name %> </p>
-<nav>
-<a class="opener" href="/auth/logout">Logout</a>
-<a class="opener" href="/profile">Profile</a>
-<a class="opener" href="/show">Greensky Set</a>
-<a class="opener" href="/show2">STS9 Set</a>
-<a class="opener" href="/show3">SCI Set</a>
-<a class="opener" href="/show4">Railroad</a>
-</nav>
-<% } %>

@@ -78,19 +78,35 @@ app.get('/profile', isLoggedIn, function(req, res) {
 
 
 // GET greensky set
-app.get('/show', isLoggedIn, function(req, res) {
-  axios.get('https://api.setlist.fm/rest/1.0/artist/199596a3-a1af-49f8-8795-259eff8461fb/setlists?p=3', {headers})
+app.get('/bands/:id', isLoggedIn, function(req, res) {
+  var url = 'https://api.setlist.fm/rest/1.0/artist/';
+
+  if (req.params.id === 'greensky') {
+    url = url + '199596a3-a1af-49f8-8795-259eff8461fb/setlists?p=3'
+  } else if (req.params.id === 'tribe') {
+    url = url + '8d07ac81-0b49-4ec3-9402-2b8b479649a2/setlists?p=3'
+  } else if (req.params.id === 'cheese') {
+    url = url + 'cff95140-6d57-498a-8834-10eb72865b29/setlists?p=1'
+  } else if (req.params.id === 'railroad') {
+    url = url + 'b2e2abfa-fb1e-4be0-b500-56c4584f41cd/setlists?p=1'
+  }
+  axios.get(url, {headers})
   .then (function(apiResponse){
-    var songs = apiResponse.data.setlist[0].sets.set[0];
-    var songsTwo = apiResponse.data.setlist[0].sets.set[1];
-    var venue = apiResponse.data.setlist[0];
-    // console.log(songs);
-    // console.log(songsTwo);
-    var setOne = songs.song;
-    var setTwo = songsTwo.song;
-    var fullSet = setOne.concat(setTwo);
+    // render set data into a page
+    // apiResponse.data.setlist[0].id(key in setlist object)
+    var setlists = apiResponse.data.setlist;
+
+
+    // var songs = apiResponse.data.setlist[0].sets.set[0];
+    // var songsTwo = apiResponse.data.setlist[0].sets.set[1];
+    // var venue = apiResponse.data.setlist[0];
+    // // console.log(songs);
+    // // console.log(songsTwo);
+    // var setOne = songs.song;
+    // var setTwo = songsTwo.song;
+    // var fullSet = setOne.concat(setTwo);
    
-    res.render('show', {fullSet: fullSet, venue: venue});
+    res.render('show', {setlists: setlists});
 
     
   })
@@ -107,7 +123,6 @@ app.get('/show2', isLoggedIn, function(req, res) {
     var tribeSetOne = tribeSongs.song;
     var tribeSetTwo = tribeSongsTwo.song;
     var fullSetTwo = tribeSetOne.concat(tribeSetTwo);
-   
     res.render('show2', {fullSetTwo:fullSetTwo, tribeVenue: tribeVenue});
   })
 });
@@ -129,21 +144,26 @@ app.get('/show3', isLoggedIn, function(req, res) {
   })
 });
 
-//GET railroad set
-app.get('/show4', isLoggedIn, function(req, res) {
-  axios.get('https://api.setlist.fm/rest/1.0/artist/b2e2abfa-fb1e-4be0-b500-56c4584f41cd/setlists?p=2', {headers})
+
+
+//GET set by id
+app.get("/sets/:id", function(req, res) {
+  var url = "https://api.setlist.fm/rest/1.0/setlist/";
+  url = url + req.params.id;
+  axios.get(url, {headers})
   .then (function(apiResponse){
-    var rreSongs = apiResponse.data.setlist[0].sets.set[0];
-    var rreSongsTwo = apiResponse.data.setlist[0].sets.set[1];
-    var rreVenue = apiResponse.data.setlist[0];
-    
-    var rreSetOne = rreSongs.song;
-    var rreSetTwo = rreSongsTwo.song;
-    var fullSetFour = rreSetOne.concat(rreSetTwo);
-   
-    res.render('show4', {fullSetFour:fullSetFour, rreVenue: rreVenue});
+    var songs = apiResponse.data.sets;
+    var setOne = songs.set[0];
+    var songLoop = setOne.song;
+    var macroId = apiResponse.data;
+    var mBid = macroId.artist.mbid;
+    console.log(mBid);
+    res.render("set", {songLoop: songLoop, mBid: mBid, setOne});
+    // console.log(songLoop);
+    // console.log(songLoop);
+    // console.log(setOne);
   })
-});
+})
 
 
 

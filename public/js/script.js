@@ -1,6 +1,7 @@
 var mixedSet = document.getElementsByClassName('songs');
 var pickedSet = document.getElementsByClassName('picks');
 var picks = [];
+var newPick;
 
 
 
@@ -15,7 +16,11 @@ for (i = 0; i < mixedSet.length; i++) {
         document.getElementById('picks').appendChild(newPick);
     });
 }
-
-
-
+myFunction();
+function myFunction() {
+    var btn = document.createElement("button");
+    btn.innerHTML = "RESET";
+    btn.style.textAlign = 'center;'
+    document.body.appendChild(btn);
+  };
 

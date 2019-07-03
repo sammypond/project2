@@ -1,0 +1,24 @@
+<h1>Hello</h1>
+<a href="/">Back to sets</a>
+<div id="set-container">
+
+<% songLoop.sort(function(){ %>
+          <%  return 0.5 - Math.random() %>
+       <% }) %> %>
+
+    <div id="randomset">
+        <ol>
+            <% songLoop.forEach(function(song){ %>
+            <button>
+                <li class="songs"><%= song.name %></li>
+            </button>
+            <a href="/sets/?band=<%= mBid %>">Link </a>
+            <% }); %>
+        </ol>
+    </div>
+    <div>
+        <ol id="picks">
+        </ol>
+    </div>
+    </div>
+    <script src="/js/script.js"></script>
