@@ -112,37 +112,37 @@ app.get('/bands/:id', isLoggedIn, function(req, res) {
   })
 });
 
-// GET sts9 set
-app.get('/show2', isLoggedIn, function(req, res) {
-  axios.get('https://api.setlist.fm/rest/1.0/artist/8d07ac81-0b49-4ec3-9402-2b8b479649a2/setlists?p=3', {headers})
-  .then (function(apiResponse){
-    var tribeSongs = apiResponse.data.setlist[0].sets.set[0];
-    var tribeSongsTwo = apiResponse.data.setlist[0].sets.set[1];
-    var tribeVenue = apiResponse.data.setlist[0];
+// // GET sts9 set
+// app.get('/show2', isLoggedIn, function(req, res) {
+//   axios.get('https://api.setlist.fm/rest/1.0/artist/8d07ac81-0b49-4ec3-9402-2b8b479649a2/setlists?p=3', {headers})
+//   .then (function(apiResponse){
+//     var tribeSongs = apiResponse.data.setlist[0].sets.set[0];
+//     var tribeSongsTwo = apiResponse.data.setlist[0].sets.set[1];
+//     var tribeVenue = apiResponse.data.setlist[0];
     
-    var tribeSetOne = tribeSongs.song;
-    var tribeSetTwo = tribeSongsTwo.song;
-    var fullSetTwo = tribeSetOne.concat(tribeSetTwo);
-    res.render('show2', {fullSetTwo:fullSetTwo, tribeVenue: tribeVenue});
-  })
-});
+//     var tribeSetOne = tribeSongs.song;
+//     var tribeSetTwo = tribeSongsTwo.song;
+//     var fullSetTwo = tribeSetOne.concat(tribeSetTwo);
+//     res.render('show2', {fullSetTwo:fullSetTwo, tribeVenue: tribeVenue});
+//   })
+// });
 
-//GET String Cheese set
+// //GET String Cheese set
 
-app.get('/show3', isLoggedIn, function(req, res) {
-  axios.get('https://api.setlist.fm/rest/1.0/artist/cff95140-6d57-498a-8834-10eb72865b29/setlists?p=1', {headers})
-  .then (function(apiResponse){
-    var cheeseSongs = apiResponse.data.setlist[0].sets.set[0];
-    var cheeseSongsTwo = apiResponse.data.setlist[0].sets.set[1];
-    var cheeseVenue = apiResponse.data.setlist[0];
+// app.get('/show3', isLoggedIn, function(req, res) {
+//   axios.get('https://api.setlist.fm/rest/1.0/artist/cff95140-6d57-498a-8834-10eb72865b29/setlists?p=1', {headers})
+//   .then (function(apiResponse){
+//     var cheeseSongs = apiResponse.data.setlist[0].sets.set[0];
+//     var cheeseSongsTwo = apiResponse.data.setlist[0].sets.set[1];
+//     var cheeseVenue = apiResponse.data.setlist[0];
     
-    var cheeseSetOne = cheeseSongs.song;
-    var cheeseSetTwo = cheeseSongsTwo.song;
-    var fullSetThree = cheeseSetOne.concat(cheeseSetTwo);
+//     var cheeseSetOne = cheeseSongs.song;
+//     var cheeseSetTwo = cheeseSongsTwo.song;
+//     var fullSetThree = cheeseSetOne.concat(cheeseSetTwo);
    
-    res.render('show3', {fullSetThree:fullSetThree, cheeseVenue: cheeseVenue});
-  })
-});
+//     res.render('show3', {fullSetThree:fullSetThree, cheeseVenue: cheeseVenue});
+//   })
+// });
 
 
 
