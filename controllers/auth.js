@@ -57,6 +57,13 @@ router.get('/logout', function(req, res) {
 
 //POST post user picks
 
+router.post('/show', function(req, res){
+
+  db.sets.create(req.body).then(function () {
+  res.redirect('show');
+  })
+});
+
 
 
 module.exports = router;

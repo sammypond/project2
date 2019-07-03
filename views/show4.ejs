@@ -9,18 +9,18 @@
 <h1><a href="/">Home</a></h1>
 <div id="banner">
     <h1> Hello, <%= currentUser.name %>, below you can see setlist information for: </h1>
-    <h3><%= tribeVenue.artist.name %> playing at</h3>
-    <h2><%= tribeVenue.venue.name %> in</h2>
-    <h3><%= tribeVenue.venue.city.name %>,<%=tribeVenue.venue.city.state%> on <%=tribeVenue.eventDate%>:</h3>
+    <h3><%= rreVenue.artist.name %> playing at</h3>
+    <h2><%= rreVenue.venue.name %> in</h2>
+    <h3><%= rreVenue.venue.city.name %>, <%=rreVenue.venue.city.state%> on <%=rreVenue.eventDate%>:</h3>
 </div>
     <hr />
        
-       <% fullSetTwo.sort(function(){ %>
+       <% fullSetFour.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
         <div id="randomset">
        <ol>
-       <% fullSetTwo.forEach(function(song){ %>
+       <% fullSetFour.forEach(function(song){ %>
             <button><li class="songs"><%= song.name %></li></button>
       <% }); %>
       </ol>

@@ -109,16 +109,50 @@ app.get('/show2', isLoggedIn, function(req, res) {
     var fullSetTwo = tribeSetOne.concat(tribeSetTwo);
    
     res.render('show2', {fullSetTwo:fullSetTwo, tribeVenue: tribeVenue});
-
-    
   })
 });
 
+//GET String Cheese set
+
+app.get('/show3', isLoggedIn, function(req, res) {
+  axios.get('https://api.setlist.fm/rest/1.0/artist/cff95140-6d57-498a-8834-10eb72865b29/setlists?p=1', {headers})
+  .then (function(apiResponse){
+    var cheeseSongs = apiResponse.data.setlist[0].sets.set[0];
+    var cheeseSongsTwo = apiResponse.data.setlist[0].sets.set[1];
+    var cheeseVenue = apiResponse.data.setlist[0];
+    
+    var cheeseSetOne = cheeseSongs.song;
+    var cheeseSetTwo = cheeseSongsTwo.song;
+    var fullSetThree = cheeseSetOne.concat(cheeseSetTwo);
+   
+    res.render('show3', {fullSetThree:fullSetThree, cheeseVenue: cheeseVenue});
+  })
+});
+
+//GET railroad set
+app.get('/show4', isLoggedIn, function(req, res) {
+  axios.get('https://api.setlist.fm/rest/1.0/artist/b2e2abfa-fb1e-4be0-b500-56c4584f41cd/setlists?p=2', {headers})
+  .then (function(apiResponse){
+    var rreSongs = apiResponse.data.setlist[0].sets.set[0];
+    var rreSongsTwo = apiResponse.data.setlist[0].sets.set[1];
+    var rreVenue = apiResponse.data.setlist[0];
+    
+    var rreSetOne = rreSongs.song;
+    var rreSetTwo = rreSongsTwo.song;
+    var fullSetFour = rreSetOne.concat(rreSetTwo);
+   
+    res.render('show4', {fullSetFour:fullSetFour, rreVenue: rreVenue});
+  })
+});
+
+
+
+//POST route
 app.post('/show2', function (req, res) {
   
   db.set.create(req.body).then(function () {
-    res.redirect('show2'); //redirects to a score page 
 
+    res.redirect('show2'); //redirects to a score page 
   })
 });
 

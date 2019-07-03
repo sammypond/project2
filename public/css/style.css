@@ -4,13 +4,11 @@ body{
 #banner {
     text-align: center;
 }
-#songs {
+.songs {
     justify-content: left;
 }
 
-a {
-    margin-left: 0 0 0 0;
-}
+
 
 button {
     display: block;
@@ -28,8 +26,15 @@ button:hover {
 
 #randomset {
     float: left;
+    margin: 0 auto;
 }
 
 #picks {
     float: right;
+    margin: 0 auto;
+}
+
+
+nav {
+    justify-content: left;
 }
