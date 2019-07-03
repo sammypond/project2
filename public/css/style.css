@@ -34,4 +34,6 @@ button:hover {
     margin: 0 auto;
 }
 
-
+nav {
+    top: 30px;
+}

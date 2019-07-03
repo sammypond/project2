@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   setGame.associate = function(models) {
     // associations can be defined here
+    models.setGame.belongsTo(models.user);
+    models.setGame.hasMany(models.attempt);
   };
   return setGame;
 };

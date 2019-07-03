@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   attempt.associate = function(models) {
     // associations can be defined here
+    models.attempt.belongsTo(models.setGame);
   };
   return attempt;
 };
