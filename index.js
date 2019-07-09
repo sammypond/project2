@@ -190,24 +190,43 @@ app.post('/attempts', function(req, res){
     }
   } 
   // let setGameId = parseInt(req.body.apiId);
-    db.attempt.create({
-        setGameId: req.body.apiId,
-        possible: req.body.actualOrder.length,
-        correct: correct
-    
-    }).then( function(){
-      res.redirect('/profile');
-    });
-
-    //POST to setgames
-    app.post('/setgames', function(req, res){
-      db.setGame.create({
+    db.setGame.findOrCreate({ 
+      where: {
         userId: req.user.id,
         apiId: req.body.apiId
-      }).then ( function(){
-        res.redirect('/profile');
-      })
+      }
+    }).spread( function(setGame, created){
+      db.attempt.create({
+        setGameId: setGame.id,
+        possible: req.body.actualOrder.length,
+        correct: correct
+    }).then( function(attempt){
+      setGame.addAttempt(attempt)
+    }).then( function(){
+      res.redirect('/profile')
     })
+  })
+
+    
+
+    // db.attempt.create({
+    //     setGameId: req.body.apiId,
+    //     possible: req.body.actualOrder.length,
+    //     correct: correct
+    
+    // }).then( function(){
+    //   res.redirect('/profile');
+    // });
+
+    // //POST to setgames
+    // app.post('/setgames', function(req, res){
+    //   db.setGame.create({
+    //     userId: req.user.id,
+    //     apiId: req.body.apiId
+    //   }).then ( function(){
+    //     res.redirect('/profile');
+    //   })
+    // })
 
   // check express-project-organizer assignment for refresher
   // findOrCreate for the setGame
