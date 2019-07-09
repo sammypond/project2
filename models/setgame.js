@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const setGame = sequelize.define('setGame', {
     userId: DataTypes.INTEGER,
-    apiId: DataTypes.INTEGER
+    apiId: DataTypes.STRING
   }, {});
   setGame.associate = function(models) {
     // associations can be defined here
