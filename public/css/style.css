@@ -31,7 +31,7 @@ button:hover {
 
 #picks {
     float: right;
-    margin: 0 auto;
+    display: block;
 }
 
 nav {

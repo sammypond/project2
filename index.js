@@ -73,11 +73,20 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
+  // res.render('profile');
+  db.setGame.findAll({
+    where:{ 
+      userId: req.user.id
+    }, 
+    // include: [db.attempt]
+  }).then( function(setGames){
+    console.log(setGames);
+    res.render('profile', {setGames})
+  })
 });
 
 
-// GET greensky set
+// GET any set
 app.get('/bands/:id', isLoggedIn, function(req, res) {
   var url = 'https://api.setlist.fm/rest/1.0/artist/';
 
@@ -97,18 +106,13 @@ app.get('/bands/:id', isLoggedIn, function(req, res) {
     var setlists = apiResponse.data.setlist;
 
 
-    // var songs = apiResponse.data.setlist[0].sets.set[0];
-    // var songsTwo = apiResponse.data.setlist[0].sets.set[1];
-    // var venue = apiResponse.data.setlist[0];
-    // // console.log(songs);
-    // // console.log(songsTwo);
-    // var setOne = songs.song;
-    // var setTwo = songsTwo.song;
-    // var fullSet = setOne.concat(setTwo);
+  
    
     res.render('show', {setlists: setlists});
 
     
+  }).catch( function(error){
+    console.log(error);
   })
 });
 
@@ -148,6 +152,7 @@ app.get('/bands/:id', isLoggedIn, function(req, res) {
 
 //GET set by id
 app.get("/sets/:id", function(req, res) {
+  let lastPage = req.headers.referer
   var url = "https://api.setlist.fm/rest/1.0/setlist/";
   url = url + req.params.id;
   axios.get(url, {headers})
@@ -158,23 +163,95 @@ app.get("/sets/:id", function(req, res) {
     var macroId = apiResponse.data;
     var mBid = macroId.artist.mbid;
     console.log(mBid);
-    res.render("set", {songLoop: songLoop, mBid: mBid, setOne});
-    // console.log(songLoop);
-    // console.log(songLoop);
-    // console.log(setOne);
+    res.render("set", {songLoop: songLoop, mBid: mBid, setOne, lastPage: lastPage, apiId: req.params.id});
+  }).catch( function(error){
+    // req.flash('error', "There is no data for your selection.")
+    // res.redirect(lastPage);
+    res.render('error');
   })
 })
 
 
 
-//POST route
-app.post('/show2', function (req, res) {
-  
-  db.set.create(req.body).then(function () {
 
-    res.redirect('show2'); //redirects to a score page 
-  })
-});
+
+//POST /attempts  
+app.post('/attempts', function(req, res){
+  var correct = 0;
+  var possible = req.body.actualOrder.length;
+  console.log("hitting the route", req.body)
+
+  // compare req.body.picks to req.body.actualOrder
+  for(i = 0; i < req.body.picks.length; i++){
+    if(req.body.actualOrder[i]  === req.body.picks[i]){
+      correct = correct + 1;
+        // do your logic to score the comparison (determine possible & correct)
+      console.log(correct);
+    }
+  } 
+  // let setGameId = parseInt(req.body.apiId);
+    db.attempt.create({
+        setGameId: req.body.apiId,
+        possible: req.body.actualOrder.length,
+        correct: correct
+    
+    }).then( function(){
+      res.redirect('/profile');
+    });
+
+    //POST to setgames
+    app.post('/setgames', function(req, res){
+      db.setGame.create({
+        userId: req.user.id,
+        apiId: req.body.apiId
+      }).then ( function(){
+        res.redirect('/profile');
+      })
+    })
+
+  // check express-project-organizer assignment for refresher
+  // findOrCreate for the setGame
+  // spread
+  // create an attempt 
+  // then
+  // setGame.addAttempt(attempt)
+  // then redirect to wherever you wanna go
+  // .then((project) => {
+  //   db.category.findOrCreate({
+  //     where: {
+  //       name: req.body.category
+  //     }
+  //   }).spread (function(category, created){
+  //     project.addCategory(category).then( function(){
+  //       res.redirect('/')
+  //     })
+  //   })
+  // })
+  
+
+  // router.post('/', (req, res) => {
+  //   db.project.create({
+  //     name: req.body.name,
+  //     githubLink: req.body.githubLink,
+  //     deployLink: req.body.deployedLink,
+  //     description: req.body.description
+  //   })
+  //   .then((project) => {
+  //     db.category.findOrCreate({
+  //       where: {
+  //         name: req.body.category
+  //       }
+  //     }).spread (function(category, created){
+  //       project.addCategory(category).then( function(){
+  //         res.redirect('/')
+  //       })
+  //     })
+  //   })
+  //   .catch((error) => {
+  //     res.json(error);
+  //   })
+  // })
+})
 
 
 app.use('/auth', require('./controllers/auth'));

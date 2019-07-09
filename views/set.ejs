@@ -1,7 +1,12 @@
 <h1>Hello</h1>
 <a href="/">Back to sets</a>
+<button onclick=
+    sendSetGamesToBack();
+>Submit Picks</button>
 <div id="set-container">
-
+<% const copy = Array.from(songLoop).map( function(song) {
+    return song.name
+}) %>
 <% songLoop.sort(function(){ %>
           <%  return 0.5 - Math.random() %>
        <% }) %> %>
@@ -20,4 +25,8 @@
         </ol>
     </div>
     </div>
+    <script> 
+        const actualOrder = <%-JSON.stringify(copy) %>
+        const setId = <%- JSON.stringify(apiId) %>
+    </script>
     <script src="/js/script.js"></script>
