@@ -37,6 +37,8 @@ function sendPicksToBack() {
         // redirect: 'follow', // manual, *follow, error
         referrer: 'no-referrer', // no-referrer, *client
         body: JSON.stringify({picks, actualOrder, apiId: setId}), // body data type must match "Content-Type" header
+    }).then( function(){
+        window.location = "/profile"
     })
 }
 
