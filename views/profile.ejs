@@ -3,9 +3,12 @@
 <p>Hello, <%= currentUser.name %> </p>
 
 <% setGames.forEach( function(setGame){ %>
-<%= setGame.id %>
+    <p>stgmeid<%= setGame.id %></p>
+    <% setGame.attempts.forEach( function(attempt){ %>
+        <p>pssoblie<%= attempt.possible %></p>
+        <p><%= attempt.correct %></p>
+    <% }) %>
 <% }) %>
-
 
 
 <br />

@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       setGameId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       possible: {
         type: Sequelize.INTEGER
