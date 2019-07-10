@@ -3,10 +3,10 @@
 <p>Hello, <%= currentUser.name %> </p>
 
 <% setGames.forEach( function(setGame){ %>
-    <p>stgmeid<%= setGame.id %></p>
+    <p>set game id <%= setGame.id %></p>
     <% setGame.attempts.forEach( function(attempt){ %>
-        <p>pssoblie<%= attempt.possible %></p>
-        <p><%= attempt.correct %></p>
+        <p>possible <%= attempt.possible %></p>
+        <p>correct <%= attempt.correct %></p>
     <% }) %>
 <% }) %>
 
