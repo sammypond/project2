@@ -7,6 +7,9 @@
     <% setGame.attempts.forEach( function(attempt){ %>
         <p>possible <%= attempt.possible %></p>
         <p>correct <%= attempt.correct %></p>
+        <form action="/<%= setGame.id %>/?_method=DELETE" method='POST'>
+          <input type="submit" value="remove">
+        </form>
     <% }) %>
 <% }) %>
 

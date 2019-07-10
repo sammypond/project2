@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const methodOverride = require('method-override');
 const ejsLayouts = require('express-ejs-layouts');
 //module allows use of sessions.  
 const session = require('express-session');
@@ -10,6 +11,7 @@ const flash = require('connect-flash');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const helmet = require('helmet');
 var axios = require('axios');
+
 
 
 // this is only used by the session store 
@@ -42,6 +44,8 @@ app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 app.use(ejsLayouts);
 app.use(helmet());
+app.use(methodOverride('_method'));
+
 
 // Configures express-session middleware
 app.use(session({
@@ -206,8 +210,10 @@ app.post('/attempts', function(req, res){
       res.redirect('/profile')
     })
   })
-
+})
     
+
+  
 
     // db.attempt.create({
     //     setGameId: req.body.apiId,
@@ -270,7 +276,18 @@ app.post('/attempts', function(req, res){
   //     res.json(error);
   //   })
   // })
-})
+
+
+
+  //DELETE ROUTE
+
+  app.delete('/:id', function(req, res){
+    db.setGame.destroy({
+      where: {id: req.params.id}
+    }).then( function(data){
+      res.redirect('/profile')
+    })
+  })
 
 
 app.use('/auth', require('./controllers/auth'));
