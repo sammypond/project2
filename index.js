@@ -78,7 +78,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
     where:{ 
       userId: req.user.id
     }, 
-    // include: [db.attempt]
+    include: [db.attempt]
   }).then( function(setGames){
     console.log(setGames);
     res.render('profile', {setGames})
