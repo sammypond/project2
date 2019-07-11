@@ -277,6 +277,16 @@ app.post('/attempts', function(req, res){
   //   })
   // })
 
+  //PUT route
+  app.put('/users/:id', function(req, res){
+    db.user.update({
+      bio: req.body.bio
+    }, {
+      where: {id: req.user.id}
+    }).then( function(){
+      res.redirect('/profile/')
+    })
+  })
 
 
   //DELETE ROUTE

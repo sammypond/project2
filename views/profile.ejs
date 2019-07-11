@@ -13,7 +13,13 @@
     <% }) %>
 <% }) %>
 
+<%= currentUser.bio%>
 
+<form method="POST" action="/users/<%= currentUser.id%>/?_method=PUT">
+<label for="bio"></label>
+    <input type="text" name="bio">
+    <button type="submit">Update Bio</button>
+</form>
 <br />
 
 <a href="/">Home</a>

@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be at least 8 character.'
         }
       }
+    },
+    bio: {
+      type: DataTypes.TEXT,
     }
   }, {
     hooks: {
